@@ -28,7 +28,7 @@ window.onload = function() {
 // correspodente ao tema, modificando o atributo 'href' do elemento
 // que inclui o arquivo CSS na página.
 function mudaTema(tema) {
-    let url = "estilo-tema-" + tema + ".css";
+    let url = "assets/css/estilo-tema-" + tema + ".css";
     let linkTema = document.querySelector("#link-tema");
     linkTema.href = url;
 }

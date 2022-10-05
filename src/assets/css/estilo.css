@@ -1,8 +1,6 @@
-body {
+body, app-root{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
     height: 100vh;
 }
 
