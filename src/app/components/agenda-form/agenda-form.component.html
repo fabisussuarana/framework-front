@@ -1,1 +1,80 @@
-<p>agenda-form works!</p>
+<form (ngSubmit)="submit(form)" #form="ngForm">
+    <div class="grid">
+        <input type="hidden" name="id" [(ngModel)]="registro.id">
+        <!-- <label for="unidade">Unidade</label>
+        <select name="unidade" id="unidade" required>
+            <option value="">Selecione</option>
+            <option value="1">Unidade A</option>
+            <option value="2">Unidade B</option>
+            <option value="3">Unidade C</option>
+            <option value="4">Unidade D</option>
+            <option value="5">Unidade E</option>
+        </select> -->
+        <label for="profissional">Profissional</label>
+        <select name="profissional" [(ngModel)]="registro.profissional" required>
+            <option value="">Selecione</option>
+            <option 
+                *ngFor="let item of profissionais" [ngValue]="item">
+                {{item.nome}}
+            </option>
+        </select>
+
+        <label for="data">Data</label>
+        <input 
+            type="date" 
+            name="data"
+            [ngModel]="registro.data"
+            required>
+
+        <label for="hora">Hora</label>
+        <select 
+            name="hora"
+            [(ngModel)]="registro.hora" 
+            required>
+
+            <option value="">Selecione</option>
+            <option value="14:00:00">14:00</option>
+            <option value="14:30:00">14:30</option>
+            <option value="15:00:00">15:00</option>
+            <option value="15:30:00">15:30</option>
+            <option value="16:00:00">16:00</option>
+            <option value="16:30:00">16:30</option>
+            <option value="17:00:00" disabled>17:00</option>
+            <option value="17:30:00">17:30</option>
+            <option value="18:00:00">18:00</option>
+            <option value="18:30:00">18:30</option>
+            <option value="19:00:00">19:00</option>
+            <option value="19:30:00">19:30</option>
+            <option value="20:00:00">20:00</option>
+        </select>
+
+        <label for="convenio">Convênio</label>
+
+        <select 
+            name="convenio"
+            [(ngModel)]="registro.convenio" 
+            required>
+            <option value="">Selecione</option>
+            <option 
+                *ngFor="let item of convenios" 
+                [ngValue]="item">
+                {{item.nome}}
+            </option>
+        </select>
+
+        <label for="paciente">Paciente</label>
+        <select 
+            name="paciente"
+            [(ngModel)]="registro.paciente"
+            required>
+            <option value="">Selecione</option>
+            <option 
+                *ngFor="let item of pacientes" 
+                [ngValue]="item">
+                {{item.nome}}
+            </option>
+        </select>
+    </div>
+    <input type="button" value="Cancelar" routerLink="../">
+    <input type="submit" value="Salvar" [disabled]="form.invalid">
+</form>

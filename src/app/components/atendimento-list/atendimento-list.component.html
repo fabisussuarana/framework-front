@@ -1,1 +1,35 @@
-<p>atendimento-list works!</p>
+<app-barra-comandos></app-barra-comandos>
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Paciente</th>
+            <th>Profissional</th>
+            <th>Unidade</th>
+            <th>Convênio</th>
+            <th>Atendimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngForm="let item of registros">
+            <td class="fit">{{item.data}}</td>
+            <td class="fit">{{item.hora}}</td>
+            <td>{{item.paciente.nome}}</td>
+            <td>{{item.Profissional.nome}}</td>
+            <td>{{item.profissional.unidade.nome}}</td>
+            <td>{{item.convenio.nome}}</td>
+            <td class="centralizado">
+                <a class="botao iniciar"
+                    [ngClass]="{'inativo': item.status == 'ATENDIMENTO'}">Iniciar</a>
+                <a class="botao finalizar excluir"
+                    [ngClass]="{'inativo': item.status == 'CHEGADA'}">Finalizar</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7">Total de registros: {{registros.length}}</td>
+        </tr>
+    </tfoot>
+</table>
