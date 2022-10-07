@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-barra-comandos',
@@ -10,8 +10,10 @@ export class BarraComandosComponent implements OnInit {
 
   constructor() { }
 
+  @Output() eventoBusca = new EventEmitter();
+
   busca(termoBusca: string){
-    console.log(termoBusca);
+    this.eventoBusca.emit(termoBusca);
   }
 
   ngOnInit(): void {

@@ -4,6 +4,10 @@ import { Atendimento } from 'src/app/model/atendimento';
 import { Convenio } from 'src/app/model/convenio';
 import { Paciente } from 'src/app/model/paciente';
 import { Profissional } from 'src/app/model/profissional';
+import { AtendimentoService } from 'src/app/service/atendimento.service';
+import { ConvenioService } from 'src/app/service/convenio.service';
+import { PacienteService } from 'src/app/service/paciente.service';
+import { ProfissionalService } from 'src/app/service/profissional.service';
 import { IForm } from '../i-form';
 
 @Component({
@@ -14,7 +18,12 @@ import { IForm } from '../i-form';
 })
 export class AgendaFormComponent implements OnInit, IForm<Atendimento> {
 
-  constructor() { }
+  constructor(
+    private servico: AtendimentoService,
+    private servicoConvento: ConvenioService,
+    private servicoPaciente: PacienteService,
+    private servicoProfissional: ProfissionalService
+  ) { }
 
   registro: Atendimento = <Atendimento>{};
 

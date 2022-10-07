@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Atendimento } from 'src/app/model/atendimento';
+import { AtendimentoService } from 'src/app/service/atendimento.service';
 import { IList } from '../i-list';
 
 @Component({
@@ -10,16 +11,25 @@ import { IList } from '../i-list';
 })
 export class AgendaListComponent implements OnInit, IList<Atendimento> {
 
-  constructor() { }
+  constructor(
+    private servico: AtendimentoService
+  ) { }
+
   registros: Atendimento[] = Array<Atendimento>();
-  get(termoBusca?: string): void {
-    throw new Error('Method not implemented.');
+
+  get(termoBusca?: string | undefined): void {
+    this.servico.get(termoBusca).subscribe({
+      next: (resposta: Atendimento[]) => {
+        this.registros = resposta;
+      }
+    })
   }
   delete(id: number): void {
     throw new Error('Method not implemented.');
   }
 
   ngOnInit(): void {
+    this.get();
   }
 
 }
