@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Profissional } from '../model/profissional';
@@ -8,10 +9,18 @@ import { ICrudService } from './i-crud-service';
 })
 export class ProfissionalService implements ICrudService<Profissional>{
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
   apiUrl: string = '';
+
   get(termoBusca?: string): Observable<Profissional[]> {
-    throw new Error('Method not implemented.');
+    let url = this.apiUrl;
+    if(termoBusca){
+      url += 'busca/' + termoBusca;
+    }
+    return this.http.get<Profissional[]>(url);
   }
   getById(id: number): Observable<Profissional> {
     throw new Error('Method not implemented.');

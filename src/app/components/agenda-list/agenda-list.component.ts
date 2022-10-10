@@ -17,15 +17,36 @@ export class AgendaListComponent implements OnInit, IList<Atendimento> {
 
   registros: Atendimento[] = Array<Atendimento>();
 
+  status: string[] = ['AGENDADO', 'CONFIRMADO'];
+
   get(termoBusca?: string | undefined): void {
-    this.servico.get(termoBusca).subscribe({
+    this.servico.getByStatus(this.status,termoBusca).subscribe({
       next: (resposta: Atendimento[]) => {
-        this.registros = resposta;
+        this.registros = resposta.sort(
+          (a,b) => a.data.localeCompare(b.data)
+        );
       }
     })
   }
+
   delete(id: number): void {
-    throw new Error('Method not implemented.');
+    if (confirm('Deseja realmente cancelar o agendamento?')){
+      this.servico.delete(id).subscribe({
+        complete: () => {
+          this.get();
+        }
+      })
+    }
+  }
+
+  updateStatus(id: number): void{
+    if(confirm('Confirma alteração no status do agendamento?')){
+      this.servico.updateStatus(id).subscribe({
+        complete: () => {
+          this.get();
+        }
+      });
+    }
   }
 
   ngOnInit(): void {

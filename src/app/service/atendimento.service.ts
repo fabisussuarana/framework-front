@@ -24,15 +24,35 @@ export class AtendimentoService implements ICrudService<Atendimento>{
     return this.http.get<Atendimento[]>(url);
   }
   getById(id: number): Observable<Atendimento> {
-    throw new Error('Method not implemented.');
+    let url = this.apiUrl + id;
+    return this.http.get<Atendimento>(url)
   }
+
+  getByStatus(
+    status: string[],
+    termoBusca?: string): Observable<Atendimento[]>{
+      let url = this.apiUrl;
+      if(termoBusca){
+        url += 'busca/' + termoBusca + '/status/' + status;
+      } else{
+        url += 'busca/status/' + status;
+      }
+      return this.http.get<Atendimento[]>(url);
+    }
+
   insert(objeto: Atendimento): Observable<Atendimento> {
-    throw new Error('Method not implemented.');
+    return this.http.post<Atendimento>(this.apiUrl, objeto);
   }
   update(objeto: Atendimento): Observable<Atendimento> {
-    throw new Error('Method not implemented.');
+    return this.http.put<Atendimento>(this.apiUrl, objeto);
   }
   delete(id: number): Observable<void> {
-    throw new Error('Method not implemented.');
+    let url = this.apiUrl + id;
+    return this.http.delete<void>(url);
+  }
+
+  updateStatus(id: number): Observable<Atendimento>{
+    let url = this.apiUrl + 'status/' + id;
+    return this.http.put<Atendimento>(url, null);
   }
 }

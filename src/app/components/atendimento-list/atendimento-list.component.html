@@ -12,17 +12,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngForm="let item of registros">
-            <td class="fit">{{item.data}}</td>
-            <td class="fit">{{item.hora}}</td>
+        <tr *ngFor="let item of registros">
+            <td class="fit">{{item.data | date:'dd/MM/yyyy'}}</td>
+            <td class="fit">{{item.hora | slice:0:5 }}</td>
             <td>{{item.paciente.nome}}</td>
-            <td>{{item.Profissional.nome}}</td>
+            <td>{{item.profissional.nome}}</td>
             <td>{{item.profissional.unidade.nome}}</td>
-            <td>{{item.convenio.nome}}</td>
+            <td>{{item.convenio?.nome}}</td>
             <td class="centralizado">
                 <a class="botao iniciar"
+                (click)="updateStatus(item.id)"
                     [ngClass]="{'inativo': item.status == 'ATENDIMENTO'}">Iniciar</a>
                 <a class="botao finalizar excluir"
+                (click)="updateStatus(item.id)"
                     [ngClass]="{'inativo': item.status == 'CHEGADA'}">Finalizar</a>
             </td>
         </tr>
