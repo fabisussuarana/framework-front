@@ -9,6 +9,7 @@ import { AgendaListComponent } from './components/agenda-list/agenda-list.compon
 import { AgendaFormComponent } from './components/agenda-form/agenda-form.component';
 import { AtendimentoListComponent } from './components/atendimento-list/atendimento-list.component';
 import { BarraComandosComponent } from './components/barra-comandos/barra-comandos.component';
+import { AlertaComponent } from './components/alerta/alerta.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BarraComandosComponent } from './components/barra-comandos/barra-comand
     AgendaListComponent,
     AgendaFormComponent,
     AtendimentoListComponent,
-    BarraComandosComponent
+    BarraComandosComponent,
+    AlertaComponent
   ],
   imports: [
     BrowserModule,

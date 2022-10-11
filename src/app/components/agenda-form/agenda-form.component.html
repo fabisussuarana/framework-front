@@ -11,7 +11,8 @@
             <option value="5">Unidade E</option>
         </select> -->
         <label for="profissional">Profissional</label>
-        <select name="profissional" [(ngModel)]="registro.profissional" required>
+        <select name="profissional" [(ngModel)]="registro.profissional"
+        [compareWith]="compareById" required>
             <option value="">Selecione</option>
             <option 
                 *ngFor="let item of profissionais" [ngValue]="item">
@@ -53,6 +54,7 @@
         <select 
             name="convenio"
             [(ngModel)]="registro.convenio" 
+            [compareWith]="compareById"
             required>
             <option value="">Selecione</option>
             <option 
@@ -66,6 +68,7 @@
         <select 
             name="paciente"
             [(ngModel)]="registro.paciente"
+            [compareWith]="compareById"
             required>
             <option value="">Selecione</option>
             <option 

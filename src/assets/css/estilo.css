@@ -346,3 +346,32 @@ div#comandos {
     padding: 0.5em 0.1em;
     flex-wrap: wrap;
 }
+
+
+/* Alerta */
+
+div.alerta{
+    border: 1px solid;
+    padding: 1em;
+    max-width: 400px;
+    margin: 1em auto;
+    word-wrap: break-word;
+}
+
+div.alerta span#fechar{
+    float: right;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+div.alerta.erro{
+    background-color: #ff9f9f;
+    color: #660101;
+    border-color: #660101;
+}
+
+div.alerta.sucesso{
+    background-color: #afffba;
+    color: #006f05;
+    border-color: #006f05;
+}
