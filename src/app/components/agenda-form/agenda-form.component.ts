@@ -40,20 +40,15 @@ export class AgendaFormComponent implements OnInit, IForm<Atendimento> {
  
   submit(form: NgForm): void {
 
-    let data = new Date(this.registro.data);
-    data = new Date(data.getTime() + data.getTimezoneOffset() * 60 * 1000);
-    let registroModificado = Object.assign({}, this.registro);
-    registroModificado.data = data.toISOString();
-
     if (this.registro.id) {
-      this.servico.update(registroModificado).subscribe({
+      this.servico.update(this.registro).subscribe({
         complete: () => {
           this.router.navigate(['/agenda']);
           this.servicoAlerta.enviarAlertaSucesso();
         }
       });
     } else{
-      this.servico.insert(registroModificado).subscribe({
+      this.servico.insert(this.registro).subscribe({
         complete: () => {
           form.resetForm(); 
           this.servicoAlerta.enviarAlertaSucesso();
