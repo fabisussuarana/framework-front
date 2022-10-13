@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Profissional } from '../model/profissional';
 import { ICrudService } from './i-crud-service';
 
@@ -13,7 +14,7 @@ export class ProfissionalService implements ICrudService<Profissional>{
     private http: HttpClient
   ) { }
 
-  apiUrl: string = '';
+  apiUrl: string = environment.API_URL + '/profissional/';
 
   get(termoBusca?: string): Observable<Profissional[]> {
     let url = this.apiUrl;

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,9 @@ import { AgendaFormComponent } from './components/agenda-form/agenda-form.compon
 import { AtendimentoListComponent } from './components/atendimento-list/atendimento-list.component';
 import { BarraComandosComponent } from './components/barra-comandos/barra-comandos.component';
 import { AlertaComponent } from './components/alerta/alerta.component';
+import { ErroInterceptor } from './interceptors/erro.interceptor';
+import { LoginComponent } from './components/login/login.component';
+import { RequisicaoInterceptor } from './interceptors/requisicao.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { AlertaComponent } from './components/alerta/alerta.component';
     AgendaFormComponent,
     AtendimentoListComponent,
     BarraComandosComponent,
-    AlertaComponent
+    AlertaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,11 @@ import { AlertaComponent } from './components/alerta/alerta.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: ErroInterceptor, multi:true },
+  {
+    provide: HTTP_INTERCEPTORS, useClass: RequisicaoInterceptor, multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
