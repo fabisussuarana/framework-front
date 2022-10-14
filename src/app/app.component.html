@@ -3,26 +3,29 @@
       <img src="assets/imagens/logo.png" alt="Logo SGCM">
       <span id="titulo">SGCM</span>
   </div>
-  <div id="usuarioInfo">
-      <span>Usuário: Administrador (Admin)</span>
-      <span>Papel: ADMIN</span>           
+  <div id="usuarioInfo" [hidden]="!isAutenticado()">
+      <span>
+          Usuário: {{ getUsuario().nomeCompleto }}
+          ({{ getUsuario().nomeUsuario }})
+      </span>
+      <span>Papel: {{ getUsuario().papel }}</span>        
       <select id="tema">
           <option value="">Escolha um tema</option>
           <option value="azul">Azul</option>
           <option value="verde">Verde</option>
       </select>
-      <a href="javascript:void(0)" class="botao">Logout</a>
+      <a (click)="logout()" class="botao">Logout</a>
   </div>
 </header>
 
-<nav>
+<nav *ngIf="isAutenticado()">
   <ul>
       <li><a href="/agenda">Agenda</a></li>
       <li><a href="/atendimento">Atendimento</a></li>
       <li><a href="/pacientes">Pacientes</a></li>
       <li><a href="/profissionais">Profissionais</a></li>
       <li><a href="/convenios">Convênios</a></li>
-      <li id="dropdown">
+      <li id="dropdown" *ngIf="isAdmin()">
           <a href="javascript:void(0)">
               Configurações
               <span>&#9660;</span>

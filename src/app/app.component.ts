@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { title } from 'process';
+import { Usuario } from './model/usuario';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sgcmapp';
+
+  constructor(
+    private servicoLogin: LoginService
+  ) {}
+
+  isAutenticado():boolean{
+    return this.servicoLogin.isAutenticado();
+  }
+
+  isAdmin(): boolean{
+    return this.servicoLogin.isAdmin();
+  }
+
+  getUsuario(): Usuario{
+    return this.servicoLogin.getUsuario();
+  }
+
+  logout(): void{
+    this.servicoLogin.logout();
+  }
 }

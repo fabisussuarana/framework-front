@@ -13,6 +13,7 @@ import { AlertaComponent } from './components/alerta/alerta.component';
 import { ErroInterceptor } from './interceptors/erro.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RequisicaoInterceptor } from './interceptors/requisicao.interceptor';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RequisicaoInterceptor } from './interceptors/requisicao.interceptor';
     AtendimentoListComponent,
     BarraComandosComponent,
     AlertaComponent,
-    LoginComponent
+    LoginComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,

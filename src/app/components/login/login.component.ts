@@ -10,6 +10,12 @@ import { LoginService } from 'src/app/service/login.service';
   ]
 })
 export class LoginComponent implements OnInit {
+  isAutenticado() {
+    throw new Error('Method not implemented.');
+  }
+  logout() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(
     private servico: LoginService
